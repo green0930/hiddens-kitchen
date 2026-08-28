@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Payment Details | Hidden's Kitchen
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container page-hero-inner">
+
+        <p class="eyebrow">
+            Hidden's Kitchen
+        </p>
+
+        <h1 class="page-title">
+            Payment Details
+        </h1>
+
+        <p class="page-intro">
+            Your order is available for the requested pickup time.
+            Complete your Zelle payment to secure your order.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="payment-page section">
+    <div class="container">
+
+        <div class="payment-layout">
+
+            <div class="payment-summary-card">
+
+                <p class="eyebrow">
+                    Order Confirmed
+                </p>
+
+                <h2 class="section-title">
+                    Order #{{ order.id }}
+                </h2>
+
+
+                <div class="payment-order-items">
+
+                    {% for item in order.items.all %}
+
+                        <div class="payment-order-row">
+
+                            <div>
+                                <strong>
+                                    {{ item.menu_item.name }}
+                                </strong>
+
+                                <span>
+                                    Qty {{ item.quantity }}
+                                </span>
+                            </div>
+
+                            <strong>
+                                ${{ item.line_total|floatformat:2 }}
+                            </strong>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="payment-total-row">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ${{ total|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <div class="payment-pickup">
+
+                    <p class="eyebrow">
+                        Pickup
+                    </p>
+
+                    <p>
+                        {{ order.pickup_date|date:"F j, Y" }}
+                        at
+                        {{ order.pickup_time|time:"g:i A" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="payment-zelle-card">
+
+                <p class="eyebrow">
+                    Zelle Prepayment
+                </p>
+
+                <h2 class="section-title">
+                    Scan to pay
+                </h2>
+
+                <p class="section-copy">
+                    Open Zelle in your banking app and scan the QR code below.
+                    Please include your order number in the payment memo.
+                </p>
+
+
+                <div class="payment-qr-wrap">
+
+                    <img
+                        class="payment-qr-image"
+                        src="{% static 'images/payment/zelle-qr.png' %}"
+                        alt="Zelle payment QR code for Hidden's Kitchen"
+                    >
+
+                </div>
+
+
+                <div class="payment-memo-box">
+
+                    <span>
+                        Payment memo
+                    </span>
+
+                    <strong>
+                        Order #{{ order.id }}
+                    </strong>
+
+                </div>
+
+
+                <p class="payment-note">
+                    Your order is fully confirmed once payment is received.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

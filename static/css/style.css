@@ -1,0 +1,2129 @@
+/* =========================================================
+   HIDDEN'S KITCHEN
+   MAIN STYLESHEET
+
+   File:
+   static/css/style.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+    --color-cream: #fff7e9;
+    --color-cream-deep: #f7e8ce;
+    --color-surface: #fffaf2;
+    --color-surface-warm: #f8ead3;
+
+    --color-green: #0b4b35;
+    --color-green-dark: #073a29;
+
+    --color-red: #c83c20;
+
+    --color-gold: #b9893f;
+    --color-gold-soft: #dfc18c;
+
+    --color-text: #30271f;
+    --color-text-muted: #8b6d58;
+
+    --color-border: #e4cfad;
+
+    --container-width: 1120px;
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 26px;
+
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+}
+
+
+/* =========================================================
+   2. RESET / BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background: var(--color-cream);
+
+    color: var(--color-text);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   3. REUSABLE LAYOUT
+   ========================================================= */
+
+.container {
+    width: min(
+        100% - 4rem,
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+}
+
+.section {
+    padding-block:
+        clamp(3.5rem, 8vw, 6rem);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mx-auto {
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   4. REUSABLE TYPOGRAPHY
+   ========================================================= */
+
+.eyebrow {
+    margin-bottom: 0.8rem;
+
+    color: var(--color-red);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 2.25rem;
+}
+
+.section-heading.text-center {
+    margin-inline: auto;
+}
+
+.section-title {
+    margin-bottom: 1rem;
+
+    color: var(--color-green);
+
+    font-size:
+        clamp(2rem, 5vw, 3.3rem);
+
+    font-weight: 500;
+
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+
+.section-copy {
+    max-width: 620px;
+
+    color: var(--color-text-muted);
+
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   5. REUSABLE BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+
+    min-height: 48px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.75rem 1.4rem;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    border-color: var(--color-green);
+
+    background: var(--color-green);
+
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    border-color: var(--color-green-dark);
+
+    background: var(--color-green-dark);
+}
+
+.btn-secondary {
+    border-color: var(--color-green);
+
+    background: transparent;
+
+    color: var(--color-green);
+}
+
+.btn-secondary:hover {
+    background: var(--color-green);
+
+    color: #ffffff;
+}
+
+.section-actions {
+    margin-top: 2rem;
+}
+
+
+/* =========================================================
+   6. SITE HEADER / NAVIGATION
+   ========================================================= */
+
+.site-header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+
+    border-bottom: 1px solid var(--color-border);
+
+    background:
+        rgba(255, 247, 233, 0.96);
+}
+
+.site-nav {
+    display: flex;
+
+    min-height: 74px;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2rem;
+}
+
+.site-brand {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.8rem;
+
+    color: var(--color-green);
+}
+
+.site-brand-logo {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.site-brand-name {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.site-nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.75rem;
+}
+
+.site-nav-link {
+    color: #756659;
+
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.site-nav-link:hover {
+    color: var(--color-green);
+}
+
+.nav-menu-button {
+    display: none;
+
+    min-height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.45rem 0.9rem;
+
+    border: 1px solid var(--color-green);
+    border-radius: var(--radius-sm);
+
+    color: var(--color-green);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   7. HOME HERO
+   ========================================================= */
+
+.home-hero {
+    padding-block:
+        clamp(2.5rem, 7vw, 5rem);
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(217, 189, 140, 0.2),
+            transparent 42%
+        );
+}
+
+.home-hero-card {
+    max-width: 760px;
+
+    margin-inline: auto;
+
+    padding:
+        clamp(2rem, 6vw, 4rem);
+
+    border: 1px solid rgba(181, 138, 70, 0.28);
+    border-radius: var(--radius-lg);
+
+    background:
+        rgba(255, 250, 242, 0.66);
+
+    box-shadow:
+        0 20px 50px rgba(62, 45, 30, 0.07);
+
+    text-align: center;
+}
+
+.home-hero-logo {
+    width:
+        clamp(145px, 22vw, 215px);
+
+    margin-inline: auto;
+    margin-bottom: 1.5rem;
+
+    border-radius: 50%;
+}
+
+.home-hero-kicker {
+    margin-bottom: 1rem;
+
+    color: var(--color-red);
+
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.home-hero-title {
+    margin-bottom: 1.35rem;
+
+    color: var(--color-green);
+
+    font-size:
+        clamp(2.8rem, 7vw, 5rem);
+
+    font-weight: 500;
+
+    letter-spacing: -0.04em;
+
+    line-height: 1.04;
+}
+
+.home-hero-title span {
+    display: block;
+
+    margin-top: 0.12em;
+
+    color: var(--color-red);
+
+    font-style: italic;
+}
+
+.home-hero-copy {
+    max-width: 570px;
+
+    margin-inline: auto;
+    margin-bottom: 1.2rem;
+
+    color: var(--color-text);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(1.08rem, 2vw, 1.25rem);
+
+    line-height: 1.55;
+}
+
+.home-hero-location {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    margin-bottom: 1.5rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.9rem;
+}
+
+.home-hero-button {
+    min-width: 190px;
+}
+
+
+/* =========================================================
+   8. HOME STORY
+   ========================================================= */
+
+.home-story {
+    background: var(--color-cream-deep);
+}
+
+.home-story-inner {
+    max-width: 700px;
+
+    margin-inline: auto;
+
+    text-align: center;
+}
+
+.home-story-copy {
+    max-width: 650px;
+
+    margin-inline: auto;
+    margin-bottom: 1.25rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   9. REUSABLE DECORATIVE DIVIDER
+   ========================================================= */
+
+.home-divider {
+    display: flex;
+
+    max-width: 220px;
+
+    align-items: center;
+
+    gap: 0.8rem;
+
+    margin: 1.5rem auto;
+
+    color: var(--color-red);
+}
+
+.home-divider span:first-child,
+.home-divider span:last-child {
+    height: 1px;
+
+    flex: 1;
+
+    background: var(--color-gold-soft);
+}
+
+.home-divider span:nth-child(2) {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   10. HOME FEATURED MENU
+   ========================================================= */
+
+.home-menu {
+    background: var(--color-cream);
+}
+
+.home-menu-list {
+    width: 100%;
+}
+
+.home-menu-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    gap: 1.5rem;
+
+    padding: 1.35rem 0;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.home-menu-item:first-child {
+    border-top: 1px solid var(--color-border);
+}
+
+.home-menu-main h3 {
+    margin-bottom: 0.35rem;
+
+    color: var(--color-green);
+
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.home-menu-main p {
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.home-menu-price {
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   11. HOW TO ORDER
+   ========================================================= */
+
+.home-order {
+    background: var(--color-cream-deep);
+}
+
+.order-steps {
+    max-width: 760px;
+
+    margin-inline: auto;
+}
+
+.order-step {
+    display: grid;
+
+    grid-template-columns:
+        42px
+        minmax(0, 1fr);
+
+    align-items: start;
+
+    gap: 1rem;
+}
+
+.order-step-number {
+    display: inline-flex;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+
+    background: var(--color-surface);
+
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1rem;
+}
+
+.order-step h3 {
+    margin-bottom: 0.25rem;
+
+    color: var(--color-green);
+
+    font-size: 1.15rem;
+}
+
+.order-step p {
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.95rem;
+}
+
+.order-step-divider {
+    margin:
+        0.6rem 0
+        0.6rem 20px;
+
+    color: var(--color-gold);
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   12. LARGE ORDERS / GATHERING CARD
+   ========================================================= */
+
+.home-gathering {
+    background: var(--color-cream);
+}
+
+.gathering-card {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 2rem;
+
+    padding:
+        clamp(1.75rem, 5vw, 3rem);
+
+    border: 1px solid var(--color-gold-soft);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+}
+
+.gathering-card .section-title {
+    margin-bottom: 0.8rem;
+}
+
+.gathering-card .section-copy {
+    margin-bottom: 0;
+}
+
+.gathering-actions {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   13. SOCIAL SECTION
+   ========================================================= */
+
+.home-social {
+    background: var(--color-cream);
+}
+
+.home-social-inner {
+    max-width: 700px;
+
+    margin-inline: auto;
+
+    text-align: center;
+}
+
+.instagram-link {
+    display: inline-block;
+
+    margin-top: 1.5rem;
+
+    border-bottom: 1px solid var(--color-gold);
+
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   14. REUSABLE PAGE HERO
+   ========================================================= */
+
+.page-hero {
+    padding-block:
+        clamp(3.5rem, 8vw, 6rem);
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(217, 189, 140, 0.18),
+            transparent 45%
+        );
+}
+
+.page-hero-inner {
+    max-width: 760px;
+
+    margin-inline: auto;
+
+    text-align: center;
+}
+
+.page-title {
+    margin-bottom: 1rem;
+
+    color: var(--color-green);
+
+    font-size:
+        clamp(2.8rem, 7vw, 5rem);
+
+    font-weight: 500;
+
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+}
+
+.page-intro {
+    max-width: 620px;
+
+    margin-inline: auto;
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   15. FULL MENU PAGE
+   ========================================================= */
+
+.menu-page {
+    padding-top: 2rem;
+
+    background: var(--color-cream);
+}
+
+.menu-category + .menu-category {
+    margin-top: 4rem;
+}
+
+.menu-category-heading {
+    margin-bottom: 1.25rem;
+
+    padding: 0.85rem 1rem;
+
+    border-left: 4px solid var(--color-gold);
+
+    background: var(--color-surface-warm);
+}
+
+.menu-category-heading h2 {
+    margin: 0;
+
+    color: var(--color-red);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.menu-page .home-menu-list {
+    border-top: 0;
+}
+
+.menu-page .home-menu-item {
+    padding: 1.35rem 0;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.menu-page .home-menu-item:first-child {
+    border-top: 0;
+}
+
+.menu-page .home-menu-main h3 {
+    margin-bottom: 0.35rem;
+
+    color: var(--color-green);
+
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.menu-page .home-menu-main p {
+    max-width: 760px;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.menu-page .home-menu-price {
+    padding-top: 0.1rem;
+
+    font-size: 1.1rem;
+}
+
+.menu-order-note {
+    padding-top: 0;
+
+    background: var(--color-cream);
+}
+
+
+/* =========================================================
+   16. SITE FOOTER
+   ========================================================= */
+
+.site-footer {
+    padding-block: 3rem;
+
+    background: var(--color-green);
+
+    color: #ffffff;
+}
+
+.site-footer h2,
+.site-footer h3,
+.site-footer h4 {
+    color: #ffffff;
+}
+
+.site-footer a {
+    color: #ffffff;
+}
+
+.site-footer p {
+    color:
+        rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   ORDER PAGE
+   ========================================================= */
+
+.order-page {
+    padding-top: 2rem;
+}
+
+
+.order-page-hero {
+    padding-top: 2.75rem;
+    padding-bottom: 2.5rem;
+}
+
+.order-page {
+    padding-top: 2.5rem;
+}
+
+.order-form {
+    max-width: 860px;
+
+    margin-inline: auto;
+}
+
+.order-form-section + .order-form-section {
+    margin-top: 4rem;
+}
+
+.order-form-heading {
+    max-width: 650px;
+
+    margin-bottom: 1.75rem;
+}
+
+.order-form-heading h2 {
+    margin-bottom: 0.6rem;
+
+    color: var(--color-green);
+
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    font-weight: 500;
+}
+
+.order-form-heading p {
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+}
+
+.order-menu-list {
+    border-top: 1px solid var(--color-border);
+}
+
+.order-menu-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        90px;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    padding: 1.35rem 0;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.order-menu-title-row {
+    display: flex;
+
+    align-items: baseline;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.order-menu-title-row h3 {
+    margin-bottom: 0.35rem;
+
+    color: var(--color-green);
+
+    font-size: 1.15rem;
+}
+
+.order-menu-price {
+    flex-shrink: 0;
+
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: 700;
+}
+
+.order-menu-details p {
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.92rem;
+}
+
+.order-quantity {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.35rem;
+}
+
+.order-quantity-input {
+    text-align: center;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    color: var(--color-green);
+
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 0.75rem 0.85rem;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+
+    background: var(--color-surface);
+
+    color: var(--color-text);
+}
+
+.form-control:focus {
+    border-color: var(--color-green);
+
+    outline: 3px solid rgba(11, 75, 53, 0.1);
+}
+
+textarea.form-control {
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+.form-help {
+    margin-bottom: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.82rem;
+}
+
+.form-error {
+    margin-bottom: 0;
+
+    color: var(--color-red);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.form-message {
+    margin-bottom: 2rem;
+
+    padding: 1rem;
+
+    border-radius: var(--radius-sm);
+}
+
+.form-message-error {
+    border: 1px solid rgba(200, 60, 32, 0.3);
+
+    background: rgba(200, 60, 32, 0.06);
+
+    color: var(--color-red);
+}
+
+.order-policy {
+    margin-top: 4rem;
+
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+
+    border: 1px solid var(--color-gold-soft);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface-warm);
+}
+
+.order-policy h2 {
+    margin-bottom: 0.8rem;
+
+    color: var(--color-green);
+
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 500;
+}
+
+.order-policy p {
+    max-width: 680px;
+
+    color: var(--color-text-muted);
+}
+
+.order-submit {
+    margin-top: 2rem;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ORDER SUCCESS PAGE
+   ========================================================= */
+
+.order-success-card {
+    max-width: 720px;
+
+    margin-inline: auto;
+
+    padding: clamp(2rem, 5vw, 3.5rem);
+
+    border: 1px solid var(--color-gold-soft);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface);
+
+    text-align: center;
+}
+
+.order-success-copy {
+    max-width: 580px;
+
+    margin-inline: auto;
+
+    color: var(--color-text-muted);
+}
+
+.order-success-number {
+    display: inline-block;
+
+    margin-block: 1rem 2rem;
+
+    padding: 0.5rem 0.85rem;
+
+    border-radius: var(--radius-sm);
+
+    background: var(--color-surface-warm);
+
+    color: var(--color-green);
+
+    font-weight: 800;
+}
+
+.order-success-note {
+    margin-top: 1rem;
+
+    padding: 1.5rem;
+
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+
+    text-align: left;
+}
+
+.order-success-note h2 {
+    margin-bottom: 0.75rem;
+
+    color: var(--color-green);
+
+    font-size: 1.35rem;
+}
+
+.order-success-note p {
+    color: var(--color-text-muted);
+}
+
+.order-success-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 0.75rem;
+
+    margin-top: 2rem;
+}
+
+.pickup-rules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+
+    margin-bottom: 1.5rem;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.92rem;
+}
+
+.pickup-rules span {
+    position: relative;
+}
+
+.pickup-rules span + span::before {
+    content: "•";
+
+    margin-right: 1.25rem;
+
+    color: var(--color-gold);
+}
+
+.order-confirmation-summary {
+    margin-top: 2rem;
+
+    padding: 1.5rem;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+
+    background: var(--color-cream);
+
+    text-align: left;
+}
+
+.order-confirmation-summary h2 {
+    margin-bottom: 1rem;
+
+    color: var(--color-green);
+
+    font-size: 1.4rem;
+}
+
+.order-confirmation-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding: 0.75rem 0;
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text);
+}
+
+.order-confirmation-row span {
+    white-space: nowrap;
+}
+
+.order-confirmation-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-top: 1rem;
+
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.15rem;
+}
+
+.order-confirmation-total strong {
+    font-size: 1.25rem;
+}
+
+.order-confirmation-pickup {
+    margin-top: 1.25rem;
+
+    color: var(--color-text-muted);
+}
+
+.order-confirmation-pickup p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   17. RESPONSIVE — TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* -----------------------------------------------------
+       LAYOUT
+       ----------------------------------------------------- */
+
+    .container {
+        width: min(
+            100% - 2rem,
+            var(--container-width)
+        );
+    }
+
+    .section {
+        padding-block: 3.5rem;
+    }
+
+
+    /* -----------------------------------------------------
+       NAVIGATION
+       ----------------------------------------------------- */
+
+    .site-nav {
+        min-height: 66px;
+
+        gap: 0.75rem;
+    }
+
+    .site-brand {
+        gap: 0;
+    }
+
+    .site-brand-logo {
+        display: none;
+    }
+
+    .site-brand-name {
+        font-size: 1.08rem;
+    }
+
+    .site-nav-links {
+        display: none;
+    }
+
+    .nav-menu-button {
+        display: inline-flex;
+    }
+
+
+    /* -----------------------------------------------------
+       HOME HERO
+       ----------------------------------------------------- */
+
+    .home-hero {
+        padding-block:
+            1.75rem 3rem;
+    }
+
+    .home-hero-card {
+        padding:
+            2.1rem 1.25rem
+            2.3rem;
+
+        border-radius: 22px;
+    }
+
+    .home-hero-logo {
+        width: 155px;
+
+        margin-bottom: 1.35rem;
+    }
+
+    .home-hero-kicker {
+        margin-bottom: 0.9rem;
+
+        font-size: 0.7rem;
+    }
+
+    .home-hero-title {
+        margin-bottom: 1.2rem;
+
+        font-size:
+            clamp(
+                2.45rem,
+                11.5vw,
+                3.6rem
+            );
+
+        line-height: 1.05;
+    }
+
+    .home-hero-copy {
+        max-width: 320px;
+
+        margin-bottom: 1.15rem;
+
+        font-size: 1.04rem;
+    }
+
+    .home-hero-location {
+        flex-wrap: wrap;
+
+        margin-bottom: 1.4rem;
+
+        font-size: 0.84rem;
+    }
+
+    .home-hero-button {
+        width: auto;
+
+        min-width: 190px;
+        min-height: 48px;
+    }
+
+
+    /* -----------------------------------------------------
+       TYPOGRAPHY
+       ----------------------------------------------------- */
+
+    .section-heading {
+        margin-bottom: 1.75rem;
+    }
+
+    .section-title {
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                2.8rem
+            );
+    }
+
+
+    /* -----------------------------------------------------
+       FEATURED MENU
+       ----------------------------------------------------- */
+
+    .home-menu-item {
+        gap: 1rem;
+
+        padding: 1.15rem 0;
+    }
+
+    .home-menu-main h3 {
+        font-size: 1.08rem;
+    }
+
+    .home-menu-main p {
+        font-size: 0.9rem;
+    }
+
+    .home-menu-price {
+        font-size: 1rem;
+    }
+
+
+    /* -----------------------------------------------------
+       ORDER STEPS
+       ----------------------------------------------------- */
+
+    .order-step {
+        grid-template-columns:
+            40px
+            minmax(0, 1fr);
+
+        gap: 0.9rem;
+    }
+
+    .order-step-number {
+        width: 40px;
+        height: 40px;
+    }
+
+    .order-step-divider {
+        margin-left: 19px;
+    }
+
+
+    /* -----------------------------------------------------
+       LARGE ORDER CARD
+       ----------------------------------------------------- */
+
+    .gathering-card {
+        grid-template-columns: 1fr;
+
+        gap: 1.5rem;
+
+        padding: 1.5rem;
+
+        border-radius: 20px;
+    }
+
+    .gathering-actions .btn {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       PAGE HERO
+       ----------------------------------------------------- */
+
+    .page-hero {
+        padding-block:
+            3rem 2.75rem;
+    }
+
+    .page-title {
+        font-size:
+            clamp(
+                2.6rem,
+                12vw,
+                3.6rem
+            );
+    }
+
+    .page-intro {
+        font-size: 0.98rem;
+    }
+
+
+    /* -----------------------------------------------------
+       FULL MENU PAGE
+       ----------------------------------------------------- */
+
+    .menu-page {
+        padding-top: 1rem;
+    }
+
+    .menu-category + .menu-category {
+        margin-top: 3rem;
+    }
+
+    .menu-category-heading {
+        margin-bottom: 0.75rem;
+
+        padding: 0.75rem 0.85rem;
+    }
+
+    .menu-category-heading h2 {
+        font-size: 0.78rem;
+    }
+
+    .menu-page .home-menu-item {
+        padding: 1.1rem 0;
+    }
+
+    .menu-page .home-menu-main h3 {
+        font-size: 1.1rem;
+    }
+
+    .menu-page .home-menu-main p {
+        font-size: 0.9rem;
+    }
+
+    .menu-page .home-menu-price {
+        font-size: 1rem;
+    }
+
+
+    /* -----------------------------------------------------
+       BUTTONS
+       ----------------------------------------------------- */
+
+    .section-actions .btn {
+        width: 100%;
+    }
+
+    /* -----------------------------------------------------
+   ORDER PAGE
+   ----------------------------------------------------- */
+
+    .order-page-hero {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .order-page {
+        padding-top: 2rem;
+    }
+
+    .order-form-section + .order-form-section {
+        margin-top: 3rem;
+    }
+
+    .order-menu-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            70px;
+
+        gap: 1rem;
+
+        padding: 1.1rem 0;
+    }
+
+    .order-menu-title-row {
+        align-items: flex-start;
+    }
+
+    .order-menu-title-row h3 {
+        font-size: 1.05rem;
+    }
+
+    .order-menu-details p {
+        font-size: 0.88rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group-full {
+        grid-column: auto;
+    }
+
+    .order-policy {
+        margin-top: 3rem;
+
+        padding: 1.4rem;
+    }
+
+    .order-submit .btn {
+        width: 100%;
+    }
+
+    .order-success-card {
+        padding: 1.5rem;
+    }
+
+    .order-success-actions {
+        flex-direction: column;
+    }
+
+    .order-success-actions .btn {
+        width: 100%;
+    }
+
+}
+
+//* =========================================================
+   PRE-ORDER QUANTITY CONTROL
+   ========================================================= */
+
+.order-menu-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        56px;
+
+    align-items: center;
+
+    gap: 1.25rem;
+}
+
+.order-quantity {
+    display: flex;
+
+    width: 56px;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.4rem;
+
+    justify-self: end;
+}
+
+.order-quantity .form-label {
+    margin: 0;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+
+    text-align: center;
+}
+
+.order-quantity-input {
+    width: 52px;
+    height: 38px;
+
+    margin: 0;
+    padding: 0.25rem;
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    background: var(--color-surface);
+
+    color: var(--color-text);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+.order-quantity-input:focus {
+    border-color: var(--color-green);
+
+    outline: 2px solid rgba(11, 75, 53, 0.1);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .order-menu-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            52px;
+
+        gap: 0.75rem;
+    }
+
+    .order-quantity {
+        width: 52px;
+    }
+
+    .order-quantity-input {
+        width: 48px;
+        height: 36px;
+    }
+}
+
+
+/* =========================================================
+   18. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .container {
+        width: min(
+            100% - 2rem,
+            var(--container-width)
+        );
+    }
+
+    .home-hero-card {
+        padding-inline: 1rem;
+    }
+
+    .home-hero-logo {
+        width: 135px;
+    }
+
+    .home-hero-title {
+        font-size:
+            clamp(
+                2.25rem,
+                12vw,
+                3rem
+            );
+    }
+
+    .home-hero-copy {
+        font-size: 1rem;
+    }
+
+    .home-menu-item {
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+
+        gap: 0.75rem;
+    }
+
+    .menu-category-heading {
+        border-left-width: 3px;
+    }
+}
+
+
+/* =========================================================
+   19. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* =========================================================
+   PRE-ORDER SUMMARY
+   ========================================================= */
+
+.order-summary {
+    margin-top: 2.5rem;
+
+    padding: 1.5rem;
+
+    border: 1px solid var(--color-gold-soft);
+    border-radius: var(--radius-lg);
+
+    background: var(--color-surface-warm);
+}
+
+.order-summary-heading {
+    margin-bottom: 1.25rem;
+}
+
+.order-summary-heading .eyebrow {
+    margin-bottom: 0.3rem;
+}
+
+.order-summary-heading h3 {
+    margin: 0;
+
+    color: var(--color-green);
+
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.order-summary-items {
+    border-top: 1px solid var(--color-border);
+}
+
+.order-summary-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    gap: 1rem;
+
+    padding: 0.8rem 0;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.order-summary-item-name {
+    color: var(--color-text);
+
+    font-size: 0.92rem;
+}
+
+.order-summary-item-price {
+    color: var(--color-green);
+
+    font-weight: 700;
+}
+
+.order-summary-empty {
+    margin: 0;
+
+    padding: 1rem 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 0.9rem;
+}
+
+.order-summary-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-top: 1.25rem;
+
+    color: var(--color-green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.15rem;
+}
+
+.order-summary-total strong {
+    font-size: 1.3rem;
+}
+
+/* =====================================================
+   PAYMENT DETAILS
+   ===================================================== */
+
+.payment-page {
+    background: #f7f1e7;
+    padding: 28px 0 48px;
+}
+
+.payment-page .payment-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.payment-summary-card,
+.payment-zelle-card {
+    background: #fffdf8;
+    border: 1px solid rgba(37, 74, 52, 0.14);
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.payment-summary-card .section-title,
+.payment-zelle-card .section-title {
+    margin: 6px 0 18px;
+}
+
+.payment-order-items {
+    margin-top: 8px;
+    border-top: 1px solid rgba(37, 74, 52, 0.12);
+}
+
+.payment-order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(37, 74, 52, 0.12);
+}
+
+.payment-order-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.payment-order-row span {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.payment-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    font-size: 1.2rem;
+}
+
+.payment-total-row strong {
+    color: #005c42;
+    font-size: 1.5rem;
+}
+
+.payment-pickup {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: rgba(37, 74, 52, 0.06);
+    border: 1px solid rgba(37, 74, 52, 0.12);
+    border-radius: 12px;
+}
+
+.payment-pickup .eyebrow {
+    margin-bottom: 6px;
+}
+
+.payment-pickup p:last-child {
+    margin: 0;
+    font-weight: 600;
+}
+
+.payment-zelle-card {
+    text-align: left;
+}
+
+.payment-zelle-card .section-copy {
+    margin: 0 0 18px;
+    max-width: 520px;
+}
+
+.payment-qr-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0;
+}
+
+.payment-qr-image {
+    display: block;
+    width: min(250px, 75vw);
+    height: auto;
+    border-radius: 12px;
+}
+
+.payment-memo-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 16px;
+    background: rgba(37, 74, 52, 0.06);
+    border: 1px solid rgba(37, 74, 52, 0.12);
+    border-radius: 10px;
+}
+
+.payment-memo-box strong {
+    color: #005c42;
+}
+
+.payment-note {
+    margin: 14px 0 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+
+/* Payment page hero overrides */
+
+.page-hero + .payment-page {
+    padding-top: 24px;
+}
+
+.page-hero:has(+ .payment-page) {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.page-hero:has(+ .payment-page) .page-hero-inner {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.page-hero:has(+ .payment-page) .page-title {
+    margin: 4px 0 10px;
+}
+
+.page-hero:has(+ .payment-page) .page-intro {
+    margin-bottom: 0;
+}
+
+
+@media (min-width: 900px) {
+    .payment-page {
+        padding-top: 20px;
+        padding-bottom: 56px;
+    }
+
+    .payment-page .payment-layout {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(360px, 0.95fr);
+        gap: 20px;
+        align-items: start;
+        max-width: 1020px;
+        margin: 0 auto;
+    }
+
+    .payment-summary-card,
+    .payment-zelle-card {
+        padding: 28px;
+    }
+
+    .page-hero:has(+ .payment-page) {
+        padding-top: 28px;
+        padding-bottom: 18px;
+    }
+}

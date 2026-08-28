@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+
+{% block title %}
+Pre-order | Hidden's Kitchen
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero order-page-hero">
+    <div class="container page-hero-inner">
+
+        <p class="eyebrow">
+            Freshly Made for You
+        </p>
+
+        <h1 class="page-title">
+            Pre-order
+        </h1>
+
+        <p class="page-intro">
+            Choose what you'd like, select a pickup date and time,
+            and send your pre-order request.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="order-page section">
+    <div class="container">
+
+        <form method="post" class="order-form">
+            {% csrf_token %}
+
+
+            {% if form.non_field_errors %}
+                <div class="form-message form-message-error">
+
+                    {% for error in form.non_field_errors %}
+                        <p>
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+
+            <!-- =================================================
+                 STEP 1 — MENU
+                 ================================================= -->
+
+            <section class="order-form-section">
+
+                <div class="order-form-heading">
+
+                    <p class="eyebrow">
+                        Step 1
+                    </p>
+
+                    <h2>
+                        Choose your food
+                    </h2>
+
+                    <p>
+                        Select the quantity you would like for each item.
+                        Leave the quantity at 0 for anything you do not want.
+                    </p>
+
+                </div>
+
+
+                {% for category, items in grouped_items.items %}
+
+                    <section class="order-menu-category">
+
+                        <div class="menu-category-heading">
+                            <h2>
+                                {{ category }}
+                            </h2>
+                        </div>
+
+
+                        <div class="order-menu-list">
+
+                            {% for item in items %}
+
+                                <div class="order-menu-item">
+
+                                    <div class="order-menu-details">
+
+                                        <div class="order-menu-title-row">
+
+                                            <h3>
+                                                {{ item.name }}
+                                            </h3>
+
+                                            <span class="order-menu-price">
+                                                ${{ item.price|floatformat:0 }}
+                                            </span>
+
+                                        </div>
+
+                                        <p>
+                                            {{ item.description }}
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="order-quantity">
+
+                                        <label
+                                            for="quantity_{{ item.id }}"
+                                            class="form-label"
+                                        >
+                                            Qty
+                                        </label>
+
+                                        <input
+                                            id="quantity_{{ item.id }}"
+                                            name="quantity_{{ item.id }}"
+                                            type="number"
+                                            min="0"
+                                            max="50"
+                                            value="{{ item.order_quantity }}"
+                                            class="order-quantity-input"
+                                            data-item-name="{{ item.name }}"
+                                            data-item-price="{{ item.price }}"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </section>
+
+                {% empty %}
+
+                    <p class="section-copy">
+                        No menu items are currently available.
+                    </p>
+
+                {% endfor %}
+
+            </section>
+
+            <div
+                class="order-summary"
+                id="order-summary"
+                aria-live="polite"
+            >
+                <div class="order-summary-heading">
+                    <p class="eyebrow">
+                        Your Order
+                    </p>
+
+                    <h3>
+                        Order Summary
+                    </h3>
+                </div>
+
+                <div
+                    class="order-summary-items"
+                    id="order-summary-items"
+                >
+                    <p class="order-summary-empty">
+                        Choose an item above to see your order summary.
+                    </p>
+                </div>
+
+                <div class="order-summary-total">
+                    <span>
+                        Estimated Total
+                    </span>
+
+                    <strong id="order-summary-total">
+                        $0.00
+                    </strong>
+                </div>
+            </div>
+
+
+            <!-- =================================================
+                 STEP 2 — CUSTOMER
+                 ================================================= -->
+
+            <section class="order-form-section">
+
+                <div class="order-form-heading">
+
+                    <p class="eyebrow">
+                        Step 2
+                    </p>
+
+                    <h2>
+                        Your information
+                    </h2>
+
+                    <p>
+                        I need a phone number or email so I can confirm
+                        availability and your pickup details.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group form-group-full">
+
+                        <label
+                            for="{{ form.customer_name.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.customer_name.label }}
+                        </label>
+
+                        {{ form.customer_name }}
+
+                        {% for error in form.customer_name.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="{{ form.phone.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.phone.label }}
+                        </label>
+
+                        {{ form.phone }}
+
+                        {% if form.phone.help_text %}
+                            <p class="form-help">
+                                {{ form.phone.help_text }}
+                            </p>
+                        {% endif %}
+
+                        {% for error in form.phone.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="{{ form.email.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.email.label }}
+                        </label>
+
+                        {{ form.email }}
+
+                        {% for error in form.email.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STEP 3 — PICKUP
+                 ================================================= -->
+
+            <section class="order-form-section">
+
+                <div class="order-form-heading">
+
+                    <p class="eyebrow">
+                        Step 3
+                    </p>
+
+                    <h2>
+                        Pickup
+                    </h2>
+
+                    <p class="pickup-rules">
+                        <span>
+                            1–9 items: at least 24 hours notice
+                        </span>
+
+                        <span>
+                            10+ items: at least 72 hours notice
+                        </span>
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label
+                            for="{{ form.pickup_date.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.pickup_date.label }}
+                        </label>
+
+                        {{ form.pickup_date }}
+
+                        {% for error in form.pickup_date.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="{{ form.pickup_time.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.pickup_time.label }}
+                        </label>
+
+                        {{ form.pickup_time }}
+
+                        {% for error in form.pickup_time.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group form-group-full">
+
+                        <label
+                            for="{{ form.notes.id_for_label }}"
+                            class="form-label"
+                        >
+                            {{ form.notes.label }}
+                        </label>
+
+                        {{ form.notes }}
+
+                        {% for error in form.notes.errors %}
+                            <p class="form-error">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CONFIRMATION POLICY
+                 ================================================= -->
+
+            <section class="order-policy">
+
+                <p class="eyebrow">
+                    Before You Submit
+                </p>
+
+                <h2>
+                    Your request is not confirmed yet.
+                </h2>
+
+                <p>
+                    After I review your requested items and pickup time,
+                    I will confirm availability with you.
+                </p>
+
+                <p>
+                    Prepayment via Zelle is required after availability
+                    is confirmed. Your order is officially confirmed
+                    once payment is received.
+                </p>
+
+            </section>
+
+
+            <div class="order-submit">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Send Pre-order Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const quantityInputs = document.querySelectorAll(
+        ".order-quantity-input"
+    );
+
+    const summaryItems = document.getElementById(
+        "order-summary-items"
+    );
+
+    const summaryTotal = document.getElementById(
+        "order-summary-total"
+    );
+
+    function updateOrderSummary() {
+        let total = 0;
+        let hasItems = false;
+
+        summaryItems.innerHTML = "";
+
+        quantityInputs.forEach(function (input) {
+            const quantity = parseInt(input.value, 10) || 0;
+
+            if (quantity <= 0) {
+                return;
+            }
+
+            hasItems = true;
+
+            const itemName = input.dataset.itemName;
+            const itemPrice = parseFloat(
+                input.dataset.itemPrice
+            );
+
+            const lineTotal = itemPrice * quantity;
+
+            total += lineTotal;
+
+            const row = document.createElement("div");
+            row.className = "order-summary-row";
+
+            const name = document.createElement("span");
+            name.className = "order-summary-item-name";
+            name.textContent =
+                itemName + " × " + quantity;
+
+            const price = document.createElement("span");
+            price.className = "order-summary-item-price";
+            price.textContent =
+                "$" + lineTotal.toFixed(2);
+
+            row.appendChild(name);
+            row.appendChild(price);
+
+            summaryItems.appendChild(row);
+        });
+
+        if (!hasItems) {
+            const empty = document.createElement("p");
+
+            empty.className = "order-summary-empty";
+            empty.textContent =
+                "Choose an item above to see your order summary.";
+
+            summaryItems.appendChild(empty);
+        }
+
+        summaryTotal.textContent =
+            "$" + total.toFixed(2);
+    }
+
+    quantityInputs.forEach(function (input) {
+        input.addEventListener(
+            "input",
+            updateOrderSummary
+        );
+    });
+
+    updateOrderSummary();
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+
+# Django
+db.sqlite3
+*.log
+
+# Environment variables / secrets
+.env
+
+# Static / generated files
+staticfiles/
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Private payment assets
+static/images/payment/zelle-qr.png
+

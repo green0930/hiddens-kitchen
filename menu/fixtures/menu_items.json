@@ -1,0 +1,178 @@
+[
+{
+  "model": "menu.menuitem",
+  "pk": 1,
+  "fields": {
+    "name": "Bulgogi Kimbap",
+    "slug": "bulgogi-kimbap",
+    "description": "Marinated bulgogi beef, rice, carrots, cucumber and pickled radish wrapped in roasted seaweed.",
+    "price": "12.00",
+    "category": "kimbap",
+    "is_available": true,
+    "is_featured": true,
+    "display_order": 1,
+    "created_at": "2026-08-24T05:07:14.034Z",
+    "updated_at": "2026-08-24T05:07:14.034Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 2,
+  "fields": {
+    "name": "Jaochae",
+    "slug": "jaochae",
+    "description": "Korean glass noodles stir-fried with fresh vegetables in a savory-sweet Korean-style sauce.",
+    "price": "12.00",
+    "category": "noodles",
+    "is_available": true,
+    "is_featured": true,
+    "display_order": 2,
+    "created_at": "2026-08-24T05:12:28.892Z",
+    "updated_at": "2026-08-24T05:12:28.892Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 3,
+  "fields": {
+    "name": "Tteok-ggochi",
+    "slug": "tteok-ggochi",
+    "description": "Chewy Korean rice cakes lightly pan-fried and coated in a homemade sweet and spicy sauce.",
+    "price": "10.00",
+    "category": "street_food",
+    "is_available": true,
+    "is_featured": true,
+    "display_order": 3,
+    "created_at": "2026-08-24T05:15:01.211Z",
+    "updated_at": "2026-08-24T05:15:01.211Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 4,
+  "fields": {
+    "name": "Spicy Chicken Bowl",
+    "slug": "spicy-chicken-bowl",
+    "description": "Korean-style sweet and spicy chicken served with steamed rice.",
+    "price": "15.00",
+    "category": "rice_bowl",
+    "is_available": true,
+    "is_featured": true,
+    "display_order": 4,
+    "created_at": "2026-08-24T05:16:00.327Z",
+    "updated_at": "2026-08-27T16:59:45.511Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 5,
+  "fields": {
+    "name": "Tuna Kimbap",
+    "slug": "tuna-kimbap",
+    "description": "Tuna with mayo, rice, carrots, cucumber and pickled radish wrapped in roasted seaweed.",
+    "price": "10.00",
+    "category": "kimbap",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 5,
+    "created_at": "2026-08-27T16:48:33.290Z",
+    "updated_at": "2026-08-27T16:55:23.098Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 6,
+  "fields": {
+    "name": "Spam & Egg Kimbap",
+    "slug": "spam-egg-kimbap",
+    "description": "Spam and egg wrapped with rice in roasted seaweed.",
+    "price": "10.00",
+    "category": "kimbap",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 6,
+    "created_at": "2026-08-27T16:49:29.976Z",
+    "updated_at": "2026-08-27T19:20:22.404Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 7,
+  "fields": {
+    "name": "Veggie Kimbap",
+    "slug": "veggie-kimbap",
+    "description": "Rice, carrots, yubu, cucumber and pickled radish wrapped in roasted seaweed.",
+    "price": "10.00",
+    "category": "kimbap",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 7,
+    "created_at": "2026-08-27T16:50:39.532Z",
+    "updated_at": "2026-08-27T16:50:39.532Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 8,
+  "fields": {
+    "name": "Tteokbokki",
+    "slug": "tteokbokki",
+    "description": "Chewy Korean rice cakes in a sweet and spicy Korean-style sauce.",
+    "price": "12.00",
+    "category": "street_food",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 8,
+    "created_at": "2026-08-27T16:51:25.018Z",
+    "updated_at": "2026-08-27T16:51:25.018Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 9,
+  "fields": {
+    "name": "Doenjang Jjigae",
+    "slug": "doenjang-jjigae",
+    "description": "Traditional Korean soybean paste stew served with steamed rice.",
+    "price": "14.00",
+    "category": "soup",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 9,
+    "created_at": "2026-08-27T16:52:32.238Z",
+    "updated_at": "2026-08-27T16:52:32.238Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 10,
+  "fields": {
+    "name": "Sundubu Jjigae",
+    "slug": "sundubu-jjigae",
+    "description": "Soft tofu stew served with steamed rice.",
+    "price": "15.00",
+    "category": "soup",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 10,
+    "created_at": "2026-08-27T16:53:06.852Z",
+    "updated_at": "2026-08-27T16:53:06.852Z"
+  }
+},
+{
+  "model": "menu.menuitem",
+  "pk": 11,
+  "fields": {
+    "name": "Kimchi Fried Rice",
+    "slug": "kimchi-fried-rice",
+    "description": "Korean-style fried rice made with kimchi and Spam.",
+    "price": "13.00",
+    "category": "rice_bowl",
+    "is_available": true,
+    "is_featured": false,
+    "display_order": 11,
+    "created_at": "2026-08-27T16:53:55.331Z",
+    "updated_at": "2026-08-27T16:53:55.331Z"
+  }
+}
+]

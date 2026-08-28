@@ -1,0 +1,77 @@
+{% load static %}
+
+<header class="site-header">
+    <div class="container">
+        <nav class="site-nav" aria-label="Primary navigation">
+
+            <a
+                class="site-brand"
+                href="{% url 'home' %}"
+                aria-label="Hidden's Kitchen home"
+            >
+                <img
+                    class="site-brand-logo"
+                    src="{% static 'images/branding/hiddens-kitchen-logo.png' %}"
+                    alt=""
+                >
+
+                <span class="site-brand-name">
+                    Hidden's Kitchen
+                </span>
+            </a>
+
+
+            <!-- Mobile primary action -->
+
+            <a
+                class="nav-menu-button"
+                href="{% url 'orders:preorder' %}"
+            >
+                Pre-order
+            </a>
+
+
+            <!-- Desktop navigation -->
+
+            <div class="site-nav-links">
+
+                <a
+                    class="site-nav-link"
+                    href="{% url 'home' %}"
+                >
+                    Home
+                </a>
+
+                <a
+                    class="site-nav-link"
+                    href="{% url 'menu:menu_list' %}"
+                >
+                    Menu
+                </a>
+
+                <a
+                    class="site-nav-link"
+                    href="{% url 'orders:preorder' %}"
+                >
+                    Pre-order
+                </a>
+
+                <a
+                    class="site-nav-link"
+                    href="{% url 'home' %}#how-to-order"
+                >
+                    How to Order
+                </a>
+
+                <a
+                    class="site-nav-link"
+                    href="{% url 'home' %}#about"
+                >
+                    About
+                </a>
+
+            </div>
+
+        </nav>
+    </div>
+</header>

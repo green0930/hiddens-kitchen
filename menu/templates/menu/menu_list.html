@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}
+Menu | Hidden's Kitchen
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container page-hero-inner">
+
+        <p class="eyebrow">
+            Hidden's Kitchen
+        </p>
+
+        <h1 class="page-title">
+            Our Menu
+        </h1>
+
+        <p class="page-intro">
+            Homemade Korean food prepared fresh in small batches
+            for preorder and pickup in West LA / Venice.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="menu-page section">
+    <div class="container">
+
+        {% for category, items in grouped_items.items %}
+
+            <section class="menu-category">
+
+                <div class="menu-category-heading">
+                    <h2>
+                        {{ category }}
+                    </h2>
+                </div>
+
+
+                <div class="home-menu-list">
+
+                    {% for item in items %}
+
+                        <article class="home-menu-item">
+
+                            <div class="home-menu-main">
+
+                                <h3>
+                                    {{ item.name }}
+                                </h3>
+
+                                <p>
+                                    {{ item.description }}
+                                </p>
+
+                            </div>
+
+                            <span class="home-menu-price">
+                                ${{ item.price|floatformat:0 }}
+                            </span>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% empty %}
+
+            <p class="section-copy">
+                Menu items will be available soon.
+            </p>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<section class="menu-order-note section">
+    <div class="container">
+
+        <div class="gathering-card">
+
+            <div>
+
+                <p class="eyebrow">
+                    Freshly Made
+                </p>
+
+                <h2 class="section-title">
+                    Ready to pre-order?
+                </h2>
+
+                <p class="section-copy">
+                    Orders of 1–9 items require at least
+                    24 hours notice. Orders of 10 or more items
+                    require at least 72 hours notice.
+                </p>
+
+            </div>
+
+            <div class="gathering-actions">
+
+                <a
+                    class="btn btn-primary"
+                    href="{% url 'orders:preorder' %}"
+                >
+                    Pre-order Now
+                </a>
+
+                <a
+                    class="btn btn-secondary"
+                    href="{% url 'home' %}#how-to-order"
+                >
+                    How to Order
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,395 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Hidden's Kitchen | Homemade Korean Food in West LA
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="home-hero">
+    <div class="container">
+
+        <div class="home-hero-card">
+
+            <img
+                class="home-hero-logo"
+                src="{% static 'images/branding/hiddens-kitchen-logo.png' %}"
+                alt="Hidden's Kitchen homemade Korean food"
+            >
+
+            <p class="home-hero-kicker">
+                Homemade Korean Food
+            </p>
+
+            <h1 class="home-hero-title">
+                Made Like Home.
+                <span>Shared With Love.</span>
+            </h1>
+
+            <p class="home-hero-copy">
+                Korean comfort food made fresh in small batches,
+                the same way I cook for my family at home.
+            </p>
+
+            <div class="home-hero-location">
+                <span>West LA / Venice</span>
+                <span aria-hidden="true">•</span>
+                <span>Pickup Only</span>
+            </div>
+
+            <div class="home-hero-actions">
+
+                <a
+                    class="btn btn-primary home-hero-button"
+                    href="{% url 'orders:preorder' %}"
+                >
+                    Pre-order
+                </a>
+
+                <a
+                    class="btn btn-secondary"
+                    href="#featured-menu"
+                >
+                    See What's Cooking
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     FROM MY KITCHEN
+     ===================================================== -->
+
+<section
+    class="home-story section"
+    id="about"
+>
+    <div class="container">
+
+        <div class="home-story-inner">
+
+            <p class="eyebrow">
+                From My Kitchen
+            </p>
+
+            <h2 class="section-title">
+                From my kitchen
+                to your table.
+            </h2>
+
+            <div class="home-divider" aria-hidden="true">
+                <span></span>
+                <span>♥</span>
+                <span></span>
+            </div>
+
+            <p class="home-story-copy">
+                I love cooking for my family, and food has always
+                been one of the ways I show people I care.
+            </p>
+
+            <p class="home-story-copy">
+                Hidden's Kitchen is my way of sharing some of the
+                Korean dishes I make at home with people around me.
+                Each order is prepared fresh in small batches.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     CURRENT FAVORITES
+     ===================================================== -->
+
+<section
+    class="home-menu section"
+    id="featured-menu"
+>
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="eyebrow">
+                What's Cooking
+            </p>
+
+            <h2 class="section-title">
+                A few favorites
+                from the kitchen.
+            </h2>
+
+            <p class="section-copy">
+                Homemade Korean food prepared fresh
+                for your pre-order.
+            </p>
+        </div>
+
+
+        <div class="home-menu-list">
+
+            {% for item in featured_items %}
+
+                <article class="home-menu-item">
+
+                    <div class="home-menu-main">
+                        <h3>
+                            {{ item.name }}
+                        </h3>
+
+                        <p>
+                            {{ item.description }}
+                        </p>
+                    </div>
+
+                    <span class="home-menu-price">
+                        ${{ item.price|floatformat:0 }}
+                    </span>
+
+                </article>
+
+            {% empty %}
+
+                <p class="section-copy">
+                    Featured dishes will be available soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="section-actions">
+
+            <a
+                class="btn btn-secondary"
+                href="{% url 'menu:menu_list' %}"
+            >
+                View Full Menu
+            </a>
+
+            <a
+                class="btn btn-primary"
+                href="{% url 'orders:preorder' %}"
+            >
+                Pre-order Now
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     HOW TO ORDER
+     ===================================================== -->
+
+<section
+    class="home-order section"
+    id="how-to-order"
+>
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <p class="eyebrow">
+                Freshly Made for You
+            </p>
+
+            <h2 class="section-title">
+                How to pre-order
+            </h2>
+
+            <p class="section-copy mx-auto">
+                Orders of 1–9 items require at least 24 hours notice.
+                Orders of 10 or more items require at least 72 hours notice.
+            </p>
+
+        </div>
+
+
+        <div class="order-steps">
+
+            <article class="order-step">
+                <span class="order-step-number">1</span>
+
+                <div>
+                    <h3>Choose your food</h3>
+
+                    <p>
+                        Pick the dishes and quantities
+                        you would like.
+                    </p>
+                </div>
+            </article>
+
+
+            <div class="order-step-divider" aria-hidden="true">
+                ↓
+            </div>
+
+
+            <article class="order-step">
+                <span class="order-step-number">2</span>
+
+                <div>
+                    <h3>Choose your pickup time</h3>
+
+                    <p>
+                        Select your preferred pickup
+                        date and time.
+                    </p>
+                </div>
+            </article>
+
+
+            <div class="order-step-divider" aria-hidden="true">
+                ↓
+            </div>
+
+
+            <article class="order-step">
+                <span class="order-step-number">3</span>
+
+                <div>
+                    <h3>Submit your request</h3>
+
+                    <p>
+                        I review your requested items and pickup time
+                        before confirming availability.
+                    </p>
+                </div>
+            </article>
+
+
+            <div class="order-step-divider" aria-hidden="true">
+                ↓
+            </div>
+
+
+            <article class="order-step">
+                <span class="order-step-number">4</span>
+
+                <div>
+                    <h3>Confirm & prepay</h3>
+
+                    <p>
+                        Once availability is confirmed,
+                        Zelle payment secures your order.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+
+
+        <div class="section-actions text-center">
+
+            <a
+                class="btn btn-primary"
+                href="{% url 'orders:preorder' %}"
+            >
+                Start Your Pre-order
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     LARGE ORDERS
+     ===================================================== -->
+
+<section class="home-gathering section">
+    <div class="container">
+
+        <div class="gathering-card">
+
+            <div>
+
+                <p class="eyebrow">
+                    Family • Friends • Parties
+                </p>
+
+                <h2 class="section-title">
+                    Having people over?
+                </h2>
+
+                <p class="section-copy">
+                    Orders of 10 or more items require at least
+                    72 hours notice so I have enough time to shop,
+                    prepare and make everything fresh.
+                </p>
+
+            </div>
+
+            <div class="gathering-actions">
+
+                <a
+                    class="btn btn-primary"
+                    href="{% url 'orders:preorder' %}"
+                >
+                    Start a Large Pre-order
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     INSTAGRAM
+     ===================================================== -->
+
+<section class="home-social section">
+    <div class="container">
+
+        <div class="home-social-inner">
+
+            <p class="eyebrow">
+                Around the Kitchen
+            </p>
+
+            <h2 class="section-title">
+                See what I'm making.
+            </h2>
+
+            <p class="section-copy mx-auto">
+                Follow along for homemade kimchi,
+                customer orders, new dishes and
+                everyday cooking.
+            </p>
+
+            <a
+                class="instagram-link"
+                href="https://www.instagram.com/hiddenskitchen_westla/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                @hiddenskitchen_westla
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

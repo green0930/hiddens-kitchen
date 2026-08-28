@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}
+Pre-order Request Received | Hidden's Kitchen
+{% endblock %}
+
+
+{% block content %}
+
+<section class="order-success section">
+    <div class="container">
+
+        <div class="order-success-card">
+
+            <p class="eyebrow">
+                Thank You
+            </p>
+
+            <h1 class="section-title">
+                Your pre-order request was received.
+            </h1>
+
+            <p class="order-success-copy">
+                I’ll review your requested items and pickup time
+                before confirming the order.
+            </p>
+
+            <div class="order-success-number">
+                Request #{{ order.id }}
+            </div>
+
+
+            <div class="order-confirmation-summary">
+
+                <h2>
+                    Your Request
+                </h2>
+
+                <div class="order-confirmation-items">
+
+                    {% for item in order.items.all %}
+
+                        <div class="order-confirmation-row">
+
+                            <div>
+                                <strong>
+                                    {{ item.menu_item.name }}
+                                </strong>
+
+                                <span>
+                                    × {{ item.quantity }}
+                                </span>
+                            </div>
+
+                            <span>
+                                ${{ item.line_total|floatformat:2 }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="order-confirmation-total">
+
+                    <span>
+                        Estimated Total
+                    </span>
+
+                    <strong>
+                        ${{ total|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+
+                <div class="order-confirmation-pickup">
+
+                    <p>
+                        <strong>Pickup:</strong>
+                        {{ order.pickup_date|date:"F j, Y" }}
+                        at
+                        {{ order.pickup_time|time:"g:i A" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-success-note">
+
+                <h2>
+                    What happens next?
+                </h2>
+
+                <p>
+                    I’ll confirm availability and the final total
+                    using the contact information you provided.
+                </p>
+
+                <p>
+                    Once availability is confirmed, prepayment via
+                    Zelle is required to secure the order.
+                </p>
+
+            </div>
+
+
+            <div class="order-success-actions">
+
+                <a
+                    href="{% url 'menu:menu_list' %}"
+                    class="btn btn-secondary"
+                >
+                    Back to Menu
+                </a>
+
+                <a
+                    href="{% url 'home' %}"
+                    class="btn btn-primary"
+                >
+                    Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
