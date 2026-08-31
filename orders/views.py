@@ -1,13 +1,10 @@
-from pathlib import Path
-from django.conf import settings
-from django.http import Http404, HttpResponse, FileResponse
-
-
-from collections import OrderedDict
-from datetime import datetime, timedelta
+import base64
 from decimal import Decimal
+from pathlib import Path
 
+from django.conf import settings
 from django.db import transaction
+from django.http import FileResponse, Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
@@ -214,10 +211,6 @@ def payment_qr(request, payment_token):
         payment_token=payment_token,
     )
 
-    production_qr = Path(
-        "/etc/secrets/zelle-qr.png"
-    )
-
     local_qr = (
         settings.BASE_DIR
         / "static"
@@ -226,18 +219,31 @@ def payment_qr(request, payment_token):
         / "zelle-qr.png"
     )
 
-    qr_path = (
-        production_qr
-        if production_qr.exists()
-        else local_qr
+    secret_base64 = Path(
+        "/etc/secrets/zelle-qr.b64"
     )
 
-    if not qr_path.exists():
-        raise Http404(
-            "Payment QR code is unavailable."
+    if secret_base64.exists():
+        try:
+            qr_data = base64.b64decode(
+                secret_base64.read_text().strip()
+            )
+        except Exception:
+            raise Http404(
+                "Payment QR code is unavailable."
+            )
+
+        return HttpResponse(
+            qr_data,
+            content_type="image/png",
         )
 
-    return FileResponse(
-        open(qr_path, "rb"),
-        content_type="image/png",
+    if local_qr.exists():
+        return FileResponse(
+            open(local_qr, "rb"),
+            content_type="image/png",
+        )
+
+    raise Http404(
+        "Payment QR code is unavailable."
     )
