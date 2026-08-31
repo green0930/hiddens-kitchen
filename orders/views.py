@@ -237,7 +237,7 @@ def payment_qr(request, payment_token):
 
         return HttpResponse(
             qr_data,
-            content_type="image/jpeg",
+            content_type="image/png",
         )
 
     if local_qr.exists():
