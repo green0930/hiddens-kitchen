@@ -22,4 +22,9 @@ urlpatterns = [
         views.payment_details,
         name="payment_details",
     ),
+    path(
+        "payment/<uuid:payment_token>/qr/",
+        views.payment_qr,
+        name="payment_qr",
+    ),
 ]

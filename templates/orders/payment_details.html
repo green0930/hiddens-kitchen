@@ -121,7 +121,7 @@ Payment Details | Hidden's Kitchen
 
                     <img
                         class="payment-qr-image"
-                        src="{% static 'images/payment/zelle-qr.png' %}"
+                        src="{% url 'orders:payment_qr' payment_token=order.payment_token %}"
                         alt="Zelle payment QR code for Hidden's Kitchen"
                     >
 

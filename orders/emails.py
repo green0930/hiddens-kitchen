@@ -3,9 +3,7 @@ from django.core.mail import send_mail
 
 
 def get_order_details(order):
-    items = order.items.select_related(
-        "menu_item"
-    ).all()
+    items = order.items.select_related("menu_item").all()
 
     total = sum(
         item.line_total
@@ -69,8 +67,7 @@ def send_customer_request_confirmation(order):
         [
             f"Hi {order.customer_name},",
             "",
-            "Thank you for your pre-order request "
-            "from Hidden's Kitchen.",
+            "Thank you for your pre-order request from Hidden's Kitchen.",
             "",
             f"Request #: {order.id}",
             "",
@@ -121,8 +118,10 @@ def send_order_confirmed_email(order):
         [
             f"Hi {order.customer_name},",
             "",
-            "Your Hidden's Kitchen order is available "
-            "for the requested pickup time.",
+            (
+                "Your Hidden's Kitchen order is available "
+                "for the requested pickup time."
+            ),
             "",
             f"Order #{order.id}",
             "",
@@ -152,7 +151,10 @@ def send_order_confirmed_email(order):
     )
 
     _send_email(
-        subject=f"Hidden's Kitchen Order #{order.id} - Availability Confirmed",
+        subject=(
+            f"Hidden's Kitchen Order #{order.id} "
+            "- Availability Confirmed"
+        ),
         message=message,
         recipient=order.email,
         error_label=f"Order #{order.id} confirmed email",
@@ -185,8 +187,10 @@ def send_payment_received_email(order):
                 f"at {order.pickup_time.strftime('%I:%M %p')}"
             ),
             "",
-            "Your food will be prepared fresh for your "
-            "confirmed pickup time.",
+            (
+                "Your food will be prepared fresh for your "
+                "confirmed pickup time."
+            ),
             "",
             "Thank you!",
             "Hidden's Kitchen",
@@ -295,6 +299,7 @@ def _send_email(
             recipient_list=[recipient],
             fail_silently=False,
         )
+
     except Exception as exc:
         print(
             f"{error_label} failed: {exc}"
