@@ -372,7 +372,7 @@ p:last-child {
 
 .home-hero {
     padding-block:
-        clamp(2.5rem, 7vw, 5rem);
+        clamp(1.25rem, 3vw, 2.5rem);
 
     background:
         radial-gradient(
