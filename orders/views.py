@@ -230,7 +230,7 @@ def payment_qr(request, payment_token):
             qr_data = base64.b64decode(
                 secret_base64.read_text().strip()
             )
-            print(f"Zelle QR decoded bytes: {len(qr_data)}")
+            
         except Exception:
             raise Http404(
                 "Payment QR code is unavailable."
