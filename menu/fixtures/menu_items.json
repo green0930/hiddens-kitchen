@@ -19,8 +19,8 @@
   "model": "menu.menuitem",
   "pk": 2,
   "fields": {
-    "name": "Jaochae",
-    "slug": "jaochae",
+    "name": "Japchae",
+    "slug": "japchae",
     "description": "Korean glass noodles stir-fried with fresh vegetables in a savory-sweet Korean-style sauce.",
     "price": "12.00",
     "category": "noodles",
