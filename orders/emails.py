@@ -303,7 +303,7 @@ def _send_email(
             json={
                 "sender": {
                     "name": "Hidden's Kitchen",
-                    "email": settings.EMAIL_HOST_USER,
+                    "email": settings.BREVO_SENDER_EMAIL,
                 },
                 "to": [
                     {
