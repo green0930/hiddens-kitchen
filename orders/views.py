@@ -125,7 +125,7 @@ def preorder(request):
 
                 return redirect(
                     "orders:success",
-                    order_id=order.id,
+                    payment_token=order.payment_token,
                 )
 
     else:
@@ -158,12 +158,12 @@ def preorder(request):
     )
 
 
-def order_success(request, order_id):
+def order_success(request, payment_token):
     order = get_object_or_404(
         Order.objects.prefetch_related(
             "items__menu_item"
         ),
-        id=order_id,
+        payment_token=payment_token,
     )
 
     total = sum(

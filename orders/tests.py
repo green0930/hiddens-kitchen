@@ -225,10 +225,8 @@ class PreorderViewTests(TestCase):
             response,
             reverse(
                 "orders:success",
-                kwargs={
-                    "order_id": order.id,
-                },
-            ),
+                kwargs={"payment_token": order.payment_token},
+            )
         )
 
         mock_business_email.assert_called_once_with(
@@ -349,7 +347,7 @@ class PreorderViewTests(TestCase):
             reverse(
                 "orders:success",
                 kwargs={
-                    "order_id": order.id,
+                    "payment_token": order.payment_token,
                 },
             ),
         )
@@ -392,7 +390,7 @@ class PreorderViewTests(TestCase):
             reverse(
                 "orders:success",
                 kwargs={
-                    "order_id": order.id,
+                    "payment_token": order.payment_token,
                 },
             ),
         )

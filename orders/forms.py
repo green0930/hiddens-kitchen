@@ -97,10 +97,6 @@ class OrderForm(forms.ModelForm):
         help_texts = {
             "phone": "Phone or email is required so I can confirm your order.",
             "email": "Phone or email is required so I can confirm your order.",
-            "pickup_date": (
-                "1–9 items: 24 hours notice. "
-                "10+ items: 72 hours notice."
-            ),
         }
 
     def clean(self):

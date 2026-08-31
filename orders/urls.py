@@ -13,7 +13,7 @@ urlpatterns = [
         name="preorder",
     ),
     path(
-        "success/<int:order_id>/",
+        "success/<uuid:payment_token>/",
         views.order_success,
         name="success",
     ),
