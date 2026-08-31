@@ -441,3 +441,66 @@ class PreorderViewTests(TestCase):
             order_item.line_total,
             Decimal("24.00"),
         )
+
+    def test_pending_order_cannot_access_payment_page(self):
+        order = Order.objects.create(
+            customer_name="Test Customer",
+            phone="3105551234",
+            email="test@example.com",
+            pickup_date="2026-09-05",
+            pickup_time="12:00",
+            status=Order.Status.PENDING,
+        )
+
+        response = self.client.get(
+            reverse(
+                "orders:payment_details",
+                kwargs={
+                    "payment_token": order.payment_token,
+                },
+            )
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_confirmed_order_can_access_payment_page(self):
+        order = Order.objects.create(
+            customer_name="Test Customer",
+            phone="3105551234",
+            email="test@example.com",
+            pickup_date="2026-09-05",
+            pickup_time="12:00",
+            status=Order.Status.CONFIRMED,
+        )
+
+        response = self.client.get(
+            reverse(
+                "orders:payment_details",
+                kwargs={
+                    "payment_token": order.payment_token,
+                },
+            )
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_pending_order_cannot_access_payment_qr(self):
+        order = Order.objects.create(
+            customer_name="Test Customer",
+            phone="3105551234",
+            email="test@example.com",
+            pickup_date="2026-09-05",
+            pickup_time="12:00",
+            status=Order.Status.PENDING,
+        )
+
+        response = self.client.get(
+            reverse(
+                "orders:payment_qr",
+                kwargs={
+                    "payment_token": order.payment_token,
+                },
+            )
+        )
+
+        self.assertEqual(response.status_code, 404)

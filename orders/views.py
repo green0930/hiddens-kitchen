@@ -184,11 +184,20 @@ def order_success(request, payment_token):
 
 
 def payment_details(request, payment_token):
+    allowed_statuses = [
+        Order.Status.CONFIRMED,
+        Order.Status.PAID,
+        Order.Status.PREPARING,
+        Order.Status.READY,
+        Order.Status.COMPLETED,
+    ]
+
     order = get_object_or_404(
         Order.objects.prefetch_related(
             "items__menu_item"
         ),
         payment_token=payment_token,
+        status__in=allowed_statuses,
     )
 
     total = sum(
@@ -208,9 +217,18 @@ def payment_details(request, payment_token):
     )
 
 def payment_qr(request, payment_token):
+    allowed_statuses = [
+        Order.Status.CONFIRMED,
+        Order.Status.PAID,
+        Order.Status.PREPARING,
+        Order.Status.READY,
+        Order.Status.COMPLETED,
+    ]
+
     get_object_or_404(
         Order,
         payment_token=payment_token,
+        status__in=allowed_statuses,
     )
 
     local_qr = (
