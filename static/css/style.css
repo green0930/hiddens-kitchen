@@ -1307,9 +1307,8 @@ textarea.form-control {
 }
 
 .pickup-rules {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
+    display: grid;
+    gap: 0.45rem;
 
     margin-bottom: 1.5rem;
 
@@ -1320,12 +1319,14 @@ textarea.form-control {
 
 .pickup-rules span {
     position: relative;
+    padding-left: 1rem;
 }
 
-.pickup-rules span + span::before {
-    content: "•";
+.pickup-rules span::before {
+    position: absolute;
+    left: 0;
 
-    margin-right: 1.25rem;
+    content: "•";
 
     color: var(--color-gold);
 }
