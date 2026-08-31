@@ -1,4 +1,6 @@
 import base64
+from collections import OrderedDict
+from datetime import datetime, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -235,7 +237,7 @@ def payment_qr(request, payment_token):
 
         return HttpResponse(
             qr_data,
-            content_type="image/png",
+            content_type="image/jpeg",
         )
 
     if local_qr.exists():
