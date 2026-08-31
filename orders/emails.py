@@ -1,5 +1,6 @@
+import requests
+
 from django.conf import settings
-from django.core.mail import send_mail
 
 
 def get_order_details(order):
@@ -292,13 +293,30 @@ def _send_email(
     error_label,
 ):
     try:
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[recipient],
-            fail_silently=False,
+        response = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers={
+                "accept": "application/json",
+                "api-key": settings.BREVO_API_KEY,
+                "content-type": "application/json",
+            },
+            json={
+                "sender": {
+                    "name": "Hidden's Kitchen",
+                    "email": settings.EMAIL_HOST_USER,
+                },
+                "to": [
+                    {
+                        "email": recipient,
+                    }
+                ],
+                "subject": subject,
+                "textContent": message,
+            },
+            timeout=10,
         )
+
+        response.raise_for_status()
 
     except Exception as exc:
         print(

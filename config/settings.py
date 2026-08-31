@@ -209,6 +209,8 @@ EMAIL_HOST_PASSWORD = os.getenv(
     "EMAIL_HOST_PASSWORD"
 )
 
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+
 DEFAULT_FROM_EMAIL = (
     f"Hidden's Kitchen <{EMAIL_HOST_USER}>"
 )
