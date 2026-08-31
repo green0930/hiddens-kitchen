@@ -23,7 +23,34 @@ Hidden's Kitchen | Homemade Korean Food in West LA
         content="Homemade Korean comfort food made fresh in small batches in West LA and Venice. Browse the menu and pre-order for local pickup."
     >
     <meta property="og:url" content="https://hiddens-kitchen.onrender.com/">
-{% endblock %}
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "FoodEstablishment",
+        "name": "Hidden's Kitchen",
+        "url": "https://hiddens-kitchen.onrender.com/",
+        "description": "Homemade Korean comfort food prepared fresh in small batches for pickup in West Los Angeles and Venice.",
+        "servesCuisine": "Korean",
+        "areaServed": [
+            {
+            "@type": "City",
+            "name": "Los Angeles"
+            },
+            {
+            "@type": "Place",
+            "name": "West Los Angeles"
+            },
+            {
+            "@type": "Place",
+            "name": "Venice"
+            }
+        ],
+        "sameAs": [
+            "https://www.instagram.com/hiddenskitchen_westla/"
+        ]
+        }
+        </script>
+        {% endblock %}
 
 {% block content %}
 
