@@ -20,18 +20,53 @@
                 </span>
             </a>
 
+            <div class="site-nav-mobile">
+                <details class="mobile-nav">
+                    <summary
+                        class="mobile-nav-toggle"
+                        aria-label="Open navigation menu"
+                    >
+                        Menu
+                    </summary>
 
-            <!-- Mobile primary action -->
+                    <div class="mobile-nav-panel">
+                        <a
+                            class="mobile-nav-link"
+                            href="{% url 'home' %}"
+                        >
+                            Home
+                        </a>
 
-            <a
-                class="nav-menu-button"
-                href="{% url 'orders:preorder' %}"
-            >
-                Pre-order
-            </a>
+                        <a
+                            class="mobile-nav-link"
+                            href="{% url 'menu:menu_list' %}"
+                        >
+                            Menu
+                        </a>
 
+                        <a
+                            class="mobile-nav-link"
+                            href="{% url 'home' %}#how-to-order"
+                        >
+                            How to Order
+                        </a>
 
-            <!-- Desktop navigation -->
+                        <a
+                            class="mobile-nav-link"
+                            href="{% url 'home' %}#about"
+                        >
+                            About
+                        </a>
+                    </div>
+                </details>
+
+                <a
+                    class="nav-menu-button"
+                    href="{% url 'orders:preorder' %}"
+                >
+                    Pre-order
+                </a>
+            </div>
 
             <div class="site-nav-links">
 
