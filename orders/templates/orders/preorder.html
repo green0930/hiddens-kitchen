@@ -1,9 +1,27 @@
 {% extends "base.html" %}
 
 {% block title %}
-Pre-order | Hidden's Kitchen
+Pre-order Korean Food in West LA | Hidden's Kitchen
 {% endblock %}
+{% block extra_head %}
+    <meta
+        name="description"
+        content="Pre-order homemade Korean food from Hidden's Kitchen in West Los Angeles. Choose fresh kimbap, japchae, Korean comfort food, soups, and more for local pickup."
+    >
 
+    <link
+        rel="canonical"
+        href="https://hiddens-kitchen.onrender.com/order/"
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pre-order Korean Food in West LA | Hidden's Kitchen">
+    <meta
+        property="og:description"
+        content="Pre-order homemade Korean comfort food made fresh in small batches in West LA and Venice for local pickup."
+    >
+    <meta property="og:url" content="https://hiddens-kitchen.onrender.com/order/">
+{% endblock %}
 
 {% block content %}
 
